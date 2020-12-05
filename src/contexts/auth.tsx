@@ -41,9 +41,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     }, [])
 
     async function signIn() {
-        const response = await auth.Signin()
-        setUser(response.user)
-
+        setLoading(true);
+        const response = await auth.Signin();
+        setLoading(false);
+        setUser(response.user);
+        
         api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
         await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
@@ -51,8 +53,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     function signOut() {
+        setLoading(true);
         AsyncStorage.clear().then(() => {
             setUser(null);
+            setLoading(false);
         });
     }
 

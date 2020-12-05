@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-
 import { useAuth } from '../../contexts/auth';
 
 export default function Dashboard() {
@@ -13,7 +12,7 @@ export default function Dashboard() {
 
     return (
         <View style={styles.container}>
-            <Text>Olá {user.name}!</Text>
+            <Text>Olá {user?.name}!</Text>
             <Button onPress={handleSignout} title='Sign out' />
         </View>
     );
