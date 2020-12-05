@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
-import { useAuth} from '../../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 
 export default function SignIn() {
-  
+
     const { signed, signIn } = useAuth();
 
-    function handleSignIn(){
+    function handleSignIn() {
         signIn();
     }
 
