@@ -1,10 +1,4 @@
-interface Response {
-    token:  string;
-    user: {
-        name: string;
-        email: string;
-    }
-}
+import Response from "../interfaces/Response";
 
 export function Signin(): Promise<Response> {
     return new Promise(resolve => {

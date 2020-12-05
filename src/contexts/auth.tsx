@@ -3,19 +3,8 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AsyncStorage } from 'react-native';
 import * as auth from '../services/auth';
 import api from '../services/api';
-
-interface User {
-    name: string;
-    email: string;
-}
-
-interface AuthContextData {
-    signed: boolean;
-    user: User | null;
-    loading: boolean;
-    signIn(): Promise<void>;
-    signOut(): void;
-}
+import User from '../interfaces/User';
+import AuthContextData from '../interfaces/AuthContextData';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
