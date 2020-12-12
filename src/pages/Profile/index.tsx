@@ -17,7 +17,7 @@ export default function Profile() {
 
     return (
         <View style={styles.container}>
-            <Text>Olá {user?.name}!</Text>
+            <Text>Olá {user?.email}!</Text>
             <Button onPress={handleSignout} title='Sign out' />
         </View>
     );

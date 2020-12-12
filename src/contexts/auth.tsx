@@ -29,9 +29,12 @@ export const AuthProvider: React.FC = ({ children }) => {
         loadStorageData();
     }, [])
 
-    async function signIn() {
+    async function signIn(email: string, password: string) {
+        console.log(email);
+        console.log(password);
+
         setLoading(true);
-        const response = await auth.Signin();
+        const response = await auth.Signin(email, password);
         setLoading(false);
         setUser(response.user);
 

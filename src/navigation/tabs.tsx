@@ -4,11 +4,11 @@ import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { COLORS } from "../constants"
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 import Profile from '../pages/Profile';
 import Favorite from '../pages/Favorite';
+import colors from '../constants/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ const CustomTabBar = (props: any) => {
                         left: 0,
                         right: 0,
                         height: 30,
-                        backgroundColor: COLORS.white
+                        backgroundColor: colors.WHITE
                     }}
                 ></View>
                 <BottomTabBar
@@ -69,7 +69,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="home"
                             size={25}
-                            color={focused ? COLORS.primary : COLORS.secondary}
+                            color={focused ? colors.ORANGE : colors.GRAY}
                         />
                     )
                 }}
@@ -83,7 +83,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="search"
                             size={25}
-                            color={focused ? COLORS.primary : COLORS.secondary}
+                            color={focused ? colors.ORANGE : colors.GRAY}
                         />
                     )
                 }}
@@ -97,7 +97,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="star"
                             size={25}
-                            color={focused ? COLORS.primary : COLORS.secondary}
+                            color={focused ? colors.ORANGE : colors.GRAY}
                         />
                     )
                 }}
@@ -111,7 +111,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="user"
                             size={25}
-                            color={focused ? COLORS.primary : COLORS.secondary}
+                            color={focused ? colors.ORANGE : colors.GRAY}
                         />
                     )
                 }}

@@ -4,7 +4,6 @@ import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom
 import Svg, { Path } from 'react-native-svg';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { COLORS, icons } from "../constants"
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 import Profile from '../pages/Profile';

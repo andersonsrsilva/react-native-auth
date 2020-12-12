@@ -1,18 +1,35 @@
-import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth';
+import { View, Button, StyleSheet, Image } from 'react-native';
+import FormTextInput from '../../components/FormTextInput';
+import colors from '../../constants/colors';
+import images from '../../constants/images';
 
 export default function SignIn() {
-
-    const { signed, signIn } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { signIn } = useAuth();
 
     function handleSignIn() {
-        signIn();
+        signIn(email, password);
     }
 
     return (
         <View style={styles.container}>
-            <Button onPress={handleSignIn} title='Sign in' />
+            <Image source={images.logo} style={styles.logo} />
+            <View style={styles.form}>
+                <FormTextInput
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                    placeholder="E-mail"
+                />
+                <FormTextInput
+                    value={password}
+                    onChangeText={text => setPassword(text)}
+                    placeholder="Password"
+                />
+                <Button title="Login" onPress={() => handleSignIn()} />
+            </View>
         </View>
     );
 }
@@ -20,7 +37,19 @@ export default function SignIn() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: colors.WHITE,
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    logo: {
+        flex: 1,
+        width: "100%",
+        resizeMode: "contain",
+        alignSelf: "center"
+    },
+    form: {
+        flex: 1,
+        justifyContent: "center",
+        width: "80%"
     }
-})
+});
