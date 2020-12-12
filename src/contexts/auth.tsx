@@ -34,7 +34,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         const response = await auth.Signin();
         setLoading(false);
         setUser(response.user);
-        
+
         api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
         await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
@@ -50,14 +50,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !! user, user, signIn, signOut, loading }} >
+        <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading }} >
             {children}
         </AuthContext.Provider>
     )
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
-
-  return context;
+    const context = useContext(AuthContext);
+    return context;
 }
