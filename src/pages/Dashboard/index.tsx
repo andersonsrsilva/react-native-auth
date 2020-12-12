@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useAuth } from '../../contexts/auth';
 
 export default function Dashboard() {
-    
+    const [nome, setNome] = useState([]);
+
+    useEffect(() => {
+
+    }, []);
+        
     const { signed, user, signOut } = useAuth();
 
-    function handleSignout(){
+    function handleSignout() {
         signOut();
     }
 
