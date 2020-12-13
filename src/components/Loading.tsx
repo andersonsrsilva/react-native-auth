@@ -4,9 +4,9 @@ import colors from "../constants/colors";
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useAuth } from '../contexts/auth';
 
-const { loading } = useAuth();
-
 export default function Loading() {
+    const { loading } = useAuth();
+
     return (
         <Spinner
             visible={loading}

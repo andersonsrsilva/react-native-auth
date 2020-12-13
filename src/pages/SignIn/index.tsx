@@ -4,12 +4,11 @@ import { SafeAreaView, View, Button, StyleSheet, Image } from 'react-native';
 import FormTextInput from '../../components/FormTextInput';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { signIn, loading } = useAuth();
+    const { signIn } = useAuth();
 
     function handleSignIn() {
         signIn(email, password);
@@ -18,14 +17,6 @@ export default function SignIn() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-
-                <Spinner
-                    visible={loading}
-                    textContent={'Loading...'}
-                    textStyle={styles.spinnerTextStyle}
-                />
-
-
                 <Image source={images.logo} style={styles.logo} />
                 <View style={styles.form}>
                     <FormTextInput
@@ -62,10 +53,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         width: "80%"
-    },
-
-
-    spinnerTextStyle: {
-        color: '#FFF',
     },
 });
