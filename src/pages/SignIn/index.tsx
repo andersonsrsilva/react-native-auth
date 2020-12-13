@@ -1,36 +1,47 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth';
-import { View, Button, StyleSheet, Image } from 'react-native';
+import { SafeAreaView, View, Button, StyleSheet, Image } from 'react-native';
 import FormTextInput from '../../components/FormTextInput';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { signIn } = useAuth();
+    const { signIn, loading } = useAuth();
 
     function handleSignIn() {
         signIn(email, password);
     }
 
     return (
-        <View style={styles.container}>
-            <Image source={images.logo} style={styles.logo} />
-            <View style={styles.form}>
-                <FormTextInput
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                    placeholder="E-mail"
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
+
+                <Spinner
+                    visible={loading}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
                 />
-                <FormTextInput
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    placeholder="Password"
-                />
-                <Button title="Login" onPress={() => handleSignIn()} />
+
+
+                <Image source={images.logo} style={styles.logo} />
+                <View style={styles.form}>
+                    <FormTextInput
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                        placeholder="E-mail"
+                    />
+                    <FormTextInput
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                        placeholder="Password"
+                    />
+                    <Button title="Login" onPress={() => handleSignIn()} />
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -51,5 +62,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         width: "80%"
-    }
+    },
+
+
+    spinnerTextStyle: {
+        color: '#FFF',
+    },
 });
