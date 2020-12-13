@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 
 const PublicRoutes = () => (
     <Stack.Navigator>
-        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
     </Stack.Navigator>
 )
 
