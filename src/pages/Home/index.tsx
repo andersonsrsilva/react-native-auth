@@ -1,12 +1,45 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
 import FormButton from '../../components/FormButton';
 import FormTextInput from '../../components/FormTextInput';
 
+import firebase from '../../config/firebaseConnection';
+import "firebase/database";
+import Listing from '../../components/Listing';
+import { useAuth } from '../../contexts/auth';
+
 export default function Home() {
+    const { loading } = useAuth();
     const [name, setName] = useState('');
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+
+        async function loadingData() {
+            await firebase.database().ref('users').on('value', (snapshot) => {
+                setUsers([]);
+
+                snapshot.forEach((childItem) => {
+                    let data = {
+                        key: childItem.key,
+                        name: childItem.val()
+                    };
+
+                    setUsers(oldArray => [...oldArray, data]);
+                })
+            })
+        }
+
+        loadingData();
+    }, []);
 
     function handleSave() {
+        firebase
+            .database()
+            .ref('users')
+            .push(name);
+
+        setName('');
     }
 
     return (
@@ -18,8 +51,13 @@ export default function Home() {
                     placeholder="Name"
                 />
                 <FormButton label="Save" onPress={() => handleSave()} />
-            </View>
 
+                <FlatList
+                    keyExtractor={item => item.key}
+                    data={users}
+                    renderItem={({ item }) => (<Listing data={item} />)}
+                />
+            </View>
         </View>
     );
 }
