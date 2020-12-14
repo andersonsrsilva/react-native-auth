@@ -7,7 +7,7 @@ interface Props {
     onPress: () => void;
 }
 
-class Button extends React.Component<Props> {
+class FormButton extends React.Component<Props> {
     render() {
         const { label, onPress } = this.props;
         return (
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Button;
+export default FormButton;

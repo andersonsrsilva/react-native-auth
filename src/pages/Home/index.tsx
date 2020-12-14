@@ -1,13 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { useAuth } from '../../contexts/auth';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import FormButton from '../../components/FormButton';
+import FormTextInput from '../../components/FormTextInput';
 
 export default function Home() {
-    const { signed, user, signOut } = useAuth();
+    const [name, setName] = useState('');
+
+    function handleSave() {
+    }
 
     return (
         <View style={styles.container}>
-            <Text>Home</Text>
+            <View style={styles.form}>
+                <FormTextInput
+                    value={name}
+                    onChangeText={text => setName(text)}
+                    placeholder="Name"
+                />
+                <FormButton label="Save" onPress={() => handleSave()} />
+            </View>
+
         </View>
     );
 }
@@ -17,5 +29,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    form: {
+        flex: 1,
+        width: "80%"
+    },
 })

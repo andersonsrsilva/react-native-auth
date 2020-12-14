@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth';
-import { SafeAreaView, View, Button, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import Constants from 'expo-constants';
 import FormTextInput from '../../components/FormTextInput';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
+import FormButton from '../../components/FormButton';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
@@ -16,24 +17,22 @@ export default function SignIn() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <Image source={images.logo} style={styles.logo} />
-                <View style={styles.form}>
-                    <FormTextInput
-                        value={email}
-                        onChangeText={text => setEmail(text)}
-                        placeholder="E-mail"
-                    />
-                    <FormTextInput
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                        placeholder="Password"
-                    />
-                    <Button title="Login" onPress={() => handleSignIn()} />
-                </View>
+        <View style={styles.container}>
+            <Image source={images.logo} style={styles.logo} />
+            <View style={styles.form}>
+                <FormTextInput
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                    placeholder="E-mail"
+                />
+                <FormTextInput
+                    value={password}
+                    onChangeText={text => setPassword(text)}
+                    placeholder="Password"
+                />
+                <FormButton label="Login" onPress={() => handleSignIn()} />
             </View>
-        </SafeAreaView>
+        </View>
     );
 }
 

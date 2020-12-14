@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import FormButton from '../../components/FormButton';
 import { useAuth } from '../../contexts/auth';
 
 export default function Profile() {
@@ -9,7 +10,7 @@ export default function Profile() {
 
     }, []);
 
-    const { signed, user, signOut } = useAuth();
+    const { user, signOut } = useAuth();
 
     function handleSignout() {
         signOut();
@@ -18,7 +19,7 @@ export default function Profile() {
     return (
         <View style={styles.container}>
             <Text>Olá {user?.email}!</Text>
-            <Button onPress={handleSignout} title='Sign out' />
+            <FormButton label="Sign out" onPress={() => handleSignout()} />
         </View>
     );
 }
