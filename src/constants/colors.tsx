@@ -5,7 +5,6 @@ const colors = {
     SILVER: "#BEBEBE",
     TORCH_RED: "#F8262F",
     MISCHKA: "#E5E4E6",
-    ORANGE: "#FC6D3F",
     GRAY: "#CDCDD2",
 };
 

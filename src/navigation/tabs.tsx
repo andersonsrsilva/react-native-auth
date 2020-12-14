@@ -69,7 +69,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="home"
                             size={25}
-                            color={focused ? colors.ORANGE : colors.GRAY}
+                            color={focused ? colors.DODGER_BLUE : colors.GRAY}
                         />
                     )
                 }}
@@ -83,7 +83,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="search"
                             size={25}
-                            color={focused ? colors.ORANGE : colors.GRAY}
+                            color={focused ? colors.DODGER_BLUE : colors.GRAY}
                         />
                     )
                 }}
@@ -97,7 +97,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="star"
                             size={25}
-                            color={focused ? colors.ORANGE : colors.GRAY}
+                            color={focused ? colors.DODGER_BLUE : colors.GRAY}
                         />
                     )
                 }}
@@ -111,7 +111,7 @@ const Tabs = () => {
                         <FontAwesome
                             name="user"
                             size={25}
-                            color={focused ? colors.ORANGE : colors.GRAY}
+                            color={focused ? colors.DODGER_BLUE : colors.GRAY}
                         />
                     )
                 }}

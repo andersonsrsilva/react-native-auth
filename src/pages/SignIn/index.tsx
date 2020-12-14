@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth';
 import { SafeAreaView, View, Button, StyleSheet, Image } from 'react-native';
+import Constants from 'expo-constants';
 import FormTextInput from '../../components/FormTextInput';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
@@ -39,6 +40,7 @@ export default function SignIn() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: Constants.statusBarHeight,
         backgroundColor: colors.WHITE,
         alignItems: "center",
         justifyContent: "space-between"
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
     logo: {
         flex: 1,
         width: "100%",
+        marginTop: 40,
         resizeMode: "contain",
         alignSelf: "center"
     },
