@@ -5,24 +5,27 @@ import * as auth from '../services/auth';
 import api from '../services/api';
 import User from '../interfaces/User';
 import AuthContextData from '../interfaces/AuthContextData';
+import { useLoad } from './load';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
 
+    const { start, stop } = useLoad();
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        start();
+
         async function loadStorageData() {
             const storageUser = await AsyncStorage.getItem('@RNAuth:user');
             const storageToken = await AsyncStorage.getItem('@RNAuth:token');
 
             if (storageUser && storageToken) {
                 setUser(JSON.parse(storageUser));
-                setLoading(false);
+                stop();
             } else if (!storageUser && !storageToken) {
-                setLoading(false);
+                stop();
             }
         }
 
@@ -33,11 +36,10 @@ export const AuthProvider: React.FC = ({ children }) => {
         console.log(email);
         console.log(password);
 
-        setLoading(true);
+        start();
         const response = await auth.Signin(email, password);
-        setLoading(false);
         setUser(response.user);
-
+        stop();
         api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
         await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
@@ -45,15 +47,15 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     function signOut() {
-        setLoading(true);
+        start();
         AsyncStorage.clear().then(() => {
             setUser(null);
-            setLoading(false);
+            stop();
         });
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading }} >
+        <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }} >
             {children}
         </AuthContext.Provider>
     )

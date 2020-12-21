@@ -1,15 +1,12 @@
+import "firebase/database";
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import FormButton from '../../components/FormButton';
 import FormTextInput from '../../components/FormTextInput';
-
-import firebase from '../../config/firebaseConnection';
-import "firebase/database";
 import Listing from '../../components/Listing';
-import { useAuth } from '../../contexts/auth';
+import firebase from '../../config/firebaseConnection';
 
 export default function Home() {
-    const { loading } = useAuth();
     const [name, setName] = useState('');
     const [users, setUsers] = useState([]);
 

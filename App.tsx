@@ -7,16 +7,19 @@ import { AuthProvider } from './src/contexts/auth';
 import Routes from './src/routes';
 import Loading from './src/components/Loading';
 import { StyleSheet } from 'react-native';
+import { LoadProvider } from './src/contexts/load';
 
 export default function App() {
     return (
         <NavigationContainer>
             <AuthProvider>
-                <StatusBar style="auto" backgroundColor="#428AF8" />
-                <Loading />
-                <SafeAreaView style={styles.container}>
-                    <Routes />
-                </SafeAreaView>
+                <LoadProvider>
+                    <StatusBar style="auto" backgroundColor="#428AF8" />
+                    <Loading />
+                    <SafeAreaView style={styles.container}>
+                        <Routes />
+                    </SafeAreaView>
+                </LoadProvider>
             </AuthProvider>
         </NavigationContainer>
     );
