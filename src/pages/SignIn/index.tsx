@@ -6,6 +6,7 @@ import FormTextInput from '../../components/FormTextInput';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
 import FormButton from '../../components/FormButton';
+import { useLoad } from '../../contexts/load';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');

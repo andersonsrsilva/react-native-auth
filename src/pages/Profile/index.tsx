@@ -18,8 +18,10 @@ export default function Profile() {
 
     return (
         <View style={styles.container}>
-            <Text>Olá {user?.email}!</Text>
-            <FormButton label="Sign out" onPress={() => handleSignout()} />
+            <View style={styles.form}>
+                <Text>Olá {user?.email}!</Text>
+                <FormButton label="Sign out" onPress={() => handleSignout()} />
+            </View>
         </View>
     );
 }
@@ -29,5 +31,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    form: {
+        width: "80%"
+    },
 })

@@ -12,15 +12,15 @@ import { LoadProvider } from './src/contexts/load';
 export default function App() {
     return (
         <NavigationContainer>
-            <AuthProvider>
-                <LoadProvider>
+            <LoadProvider>
+                <AuthProvider>
                     <StatusBar style="auto" backgroundColor="#428AF8" />
                     <Loading />
                     <SafeAreaView style={styles.container}>
                         <Routes />
                     </SafeAreaView>
-                </LoadProvider>
-            </AuthProvider>
+                </AuthProvider>
+            </LoadProvider>
         </NavigationContainer>
     );
 }

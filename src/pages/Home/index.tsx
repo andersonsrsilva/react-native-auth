@@ -31,12 +31,14 @@ export default function Home() {
     }, []);
 
     function handleSave() {
-        firebase
-            .database()
-            .ref('users')
-            .push(name);
+        if (name) {
+            firebase
+                .database()
+                .ref('users')
+                .push(name);
 
-        setName('');
+            setName('');
+        }
     }
 
     return (

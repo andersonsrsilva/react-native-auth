@@ -7,16 +7,8 @@ export const LoadProvider: React.FC = ({ children }) => {
 
     const [loading, setLoading] = useState(false);
 
-    function start() {
-        setLoading(true);
-    }
-
-    function stop() {
-        setLoading(false);
-    }
-
     return (
-        <LoadContext.Provider value={{ loading, start, stop }} >
+        <LoadContext.Provider value={{ loading, setLoading }}>
             {children}
         </LoadContext.Provider>
     )

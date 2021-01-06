@@ -1,6 +1,6 @@
 import { apisAreAvailable } from 'expo';
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as auth from '../services/auth';
 import api from '../services/api';
 import User from '../interfaces/User';
@@ -11,11 +11,11 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
 
-    const { start, stop } = useLoad();
+    const { loading, setLoading } = useLoad();
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        start();
+        setLoading(true);
 
         async function loadStorageData() {
             const storageUser = await AsyncStorage.getItem('@RNAuth:user');
@@ -23,9 +23,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 
             if (storageUser && storageToken) {
                 setUser(JSON.parse(storageUser));
-                stop();
+                setLoading(false);
             } else if (!storageUser && !storageToken) {
-                stop();
+                setLoading(false);
             }
         }
 
@@ -33,13 +33,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     }, [])
 
     async function signIn(email: string, password: string) {
-        console.log(email);
-        console.log(password);
-
-        start();
+        setLoading(true);
         const response = await auth.Signin(email, password);
         setUser(response.user);
-        stop();
+        setLoading(false);
         api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
 
         await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
@@ -47,10 +44,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     function signOut() {
-        start();
+        setLoading(true);
         AsyncStorage.clear().then(() => {
             setUser(null);
-            stop();
+            setLoading(false);
         });
     }
 
